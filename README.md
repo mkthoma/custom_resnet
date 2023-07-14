@@ -51,17 +51,17 @@ Albumentations supports a diverse set of image data types, including numpy array
 
 Overall, Albumentations is a powerful library that simplifies the process of applying image augmentation techniques, helping researchers and practitioners improve the performance and reliability of their computer vision models.
 
-### Transforms used
+### [Transforms used](https://github.com/mkthoma/custom_resnet/blob/main/utils.py)
 
 - `Normalization`: This transformation normalizes the image by subtracting the mean values (0.4914, 0.4822, 0.4465) and dividing by the standard deviation values (0.247, 0.243, 0.261) for each color channel (RGB). Normalization helps to standardize the pixel values and ensure that they have a similar range.
 
-- `PadIfNeeded`: Resizes the image to the desired size while maintaining the aspect ratio, and if the image is smaller than the specified size, it pads the image with zeros or any other specified value. In this notebook, the padding is set to 4.
+- `PadIfNeeded`: Resizes the image to the desired size while maintaining the aspect ratio, and if the image is smaller than the specified size, it pads the image with zeros or any other specified value. In this demo, the padding is set to 4.
 
 - `RandomCrop`: Used to randomly crop an image and optionally its corresponding annotations or masks. It is a common transformation used for data augmentation in computer vision tasks.
 
 - `HorizontalFlip`: This transformation horizontally flips the image with a probability of 50%. It creates a mirror image of the original image, which helps invariance to left-right orientation.
 
-- `Cutout` :  Used to randomly remove rectangular regions from an image. This technique is often employed as a form of data augmentation to enhance the model's robustness and generalization.The Cutout transform helps introduce regularization and prevents the model from relying on specific local patterns or details in the training data. It encourages the model to focus on more relevant features and improves its ability to generalize to unseen examples. In this notebook the cutout is set to (8,8).
+- `Cutout` :  Used to randomly remove rectangular regions from an image. This technique is often employed as a form of data augmentation to enhance the model's robustness and generalization.The Cutout transform helps introduce regularization and prevents the model from relying on specific local patterns or details in the training data. It encourages the model to focus on more relevant features and improves its ability to generalize to unseen examples. In this demo the cutout is set to (8,8).
 
 - `ToTensorV2`: This transformation converts the image from a numpy array to a PyTorch tensor. It also adjusts the dimensions and channel ordering to match PyTorch's convention (C x H x W).
 
@@ -93,7 +93,7 @@ The LRfinder module is a useful tool for automatically exploring and finding a s
 
 The specific implementation and availability of the LRfinder module can vary depending on the deep learning framework or library being used. Some frameworks provide built-in LRfinder modules, while others may require custom implementation or the use of external libraries specifically designed for learning rate finding.
 
-In the notebook we have used the following parameters for the LR finder:
+In the [notebook](https://github.com/mkthoma/custom_resnet/blob/main/Demo.ipynb) we have used the following parameters for the LR finder:
 
 We found the maximum LR as
 
@@ -122,7 +122,7 @@ The specific implementation of the One Cycle LR policy may vary depending on the
 
 It's worth noting that the One Cycle LR policy is just one of many learning rate scheduling strategies available, and its effectiveness can depend on factors such as the dataset, model architecture, and specific training scenario. It's often recommended to experiment and tune the LR range and schedule parameters to find the best settings for a particular task.
 
-In the notebook, the one cycle LR policy is implemented as 
+In the [notebook](https://github.com/mkthoma/custom_resnet/blob/main/Demo.ipynb), the one cycle LR policy is implemented as 
 ```python
 # Define the number of epochs and the max epoch for max learning rate
 total_epochs = 24
@@ -134,7 +134,7 @@ max_lr_epoch = 5
 lr_scheduler = OneCycleLR( optimizer, max_lr=max_LR, steps_per_epoch=len(train_loader), epochs=total_epochs,pct_start=max_lr_epoch/total_epochs, div_factor=100, three_phase=False, final_div_factor=100,anneal_strategy='linear')
 ```
 
-In the demo notebook we can see that the max LR was achieved at the 5th epoch.
+In the demo [notebook](https://github.com/mkthoma/custom_resnet/blob/main/Demo.ipynb) we can see that the max LR was achieved at the 5th epoch.
 ```
 EPOCH: 5
 Batch_id=97: 100%|██████████| 98/98 [00:19<00:00,  4.91it/s]
